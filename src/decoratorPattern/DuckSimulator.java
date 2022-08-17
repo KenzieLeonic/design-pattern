@@ -6,16 +6,17 @@ public static void main(String[] args) {
     simulator.simulate();   
 }
     void simulate() {
-        Quackable mallardDuck = new QuackCounter(new MallardDuck());
-        Quackable redheadDuck = new QuackCounter(new RedheadDuck());
-        Quackable rubberDuck = new QuackCounter(new RubberDuck());
+        Quackable mallardDuck = new QuackCounter(new QuackEcho(new MallardDuck()));
+        Quackable redheadDuck = new QuackCounter(new QuackEcho(new RedheadDuck()));
+        Quackable rubberDuck = new QuackCounter(new QuackEcho(new RubberDuck()));
         Quackable gooseDuck = new GooseAdapter(new Goose());
-        System.out.println("\nDuck Simulator: With Decorator: ");
+
+        System.out.println("\nDuck Simulator With Decorator: ");
         simulate(mallardDuck);
         simulate(redheadDuck);
         simulate(rubberDuck);
         simulate(gooseDuck);
-        System.out.println("The duck quacked" + QuackCounter.getQuacks() + "times");
+        System.out.println("The duck quacked " + QuackCounter.getQuacks() + " times");
     }
     void simulate(Quackable duck) {
         duck.Quack();
